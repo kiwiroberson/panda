@@ -5,7 +5,7 @@ requests
 langchain-chroma
 os-sys
 langchain-openai
-pinecone
+pinecone-client
 werkzeug.security.check_password_hash
 werkzeug.security.generate_password_hash
 datetime.datetime

@@ -6,8 +6,7 @@ langchain-chroma
 os-sys
 langchain-openai
 pinecone-client
-werkzeug.security.check_password_hash
-werkzeug.security.generate_password_hash
+Werkzeug
 datetime.datetime
 sqlite3
 dotenv

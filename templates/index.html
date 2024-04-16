@@ -1,0 +1,81 @@
+<script>
+    function copyElementText(id) {
+       var text = document.getElementById(id).innerText;
+       var elem = document.createElement("textarea");
+       document.body.appendChild(elem);
+       elem.value = text;
+       elem.select();
+       document.execCommand("copy");
+       document.body.removeChild(elem);
+   }
+</script>
+
+{% extends "layout.html" %}
+
+{% block title %}
+    Welcome
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="text-center">
+                <h1 class="display-1">
+                Select Problems
+                </h1>
+            </div>
+            <form action="/" method="post">
+                <div class="form-check">
+                    <div class="text-center">
+                    {% for i in diagcode_list %}
+                        <h4 class="display-6 my-1"> {{ subcategory_dictionary[i] }} </h4>
+
+                        {% for item in all_dictionary %}
+                            {% if all_dictionary[item][2] == i %}
+                            <input class="btn-check" type="radio" name="{{ all_dictionary[item][2] }}" value="{{ item }}" id="{{ item }}">
+                            <label class="btn btn-outline-success my-1" for="{{ item }}">
+                                {{ all_dictionary[item][0] }}
+                            </label>
+                           </input>
+                            {% endif %}
+
+                        {% endfor %}
+
+                    {% endfor %}
+
+                    <div class="text-right">
+                        <br>
+                        <button class="btn btn-success" type="submit">Start Discharge</button>
+                    </div>
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+
+        <div class="col text-center">
+            <div>
+               <h1 class="display-1">
+                    Summary
+                </h1>
+            </div>
+            <div class="text-start">
+                <p contenteditable="true" id="summary_text" autofocus class="my-5">
+                    {% for item in selected_list %}
+                    {{ item }}
+                    <br>
+                    {% endfor %}
+                </p>
+            </div>
+            <br>
+            <div>
+                 <button class="btn btn-success" onclick="copyElementText('summary_text')">Copy</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

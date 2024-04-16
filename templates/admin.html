@@ -1,0 +1,48 @@
+<script>
+    function copyElementText(id) {
+       var text = document.getElementById(id).innerText;
+       var elem = document.createElement("textarea");
+       document.body.appendChild(elem);
+       elem.value = text;
+       elem.select();
+       document.execCommand("copy");
+       document.body.removeChild(elem);
+   }
+</script>
+
+{% extends "layout.html" %}
+
+{% block title %}
+    Welcome
+{% endblock %}
+
+{% block main %}
+<div class="container-sm">
+    <h1>
+        Index
+    </h1>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Stock</th>
+                <th scope="col">Shares</th>
+                <th scope="col">Price</th>
+                <th scope="col">Total Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in shares %}
+                <tr>
+                    <td>{{ stock }}</td>
+                    <td>{{ shares[stock] }}</td>
+                    <td>{{ prices[stock] }}</td>
+                    <td>{{ value[stock] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+

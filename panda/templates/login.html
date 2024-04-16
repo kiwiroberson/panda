@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <form action="/login" method="post">
+        <div class="mb-3">
+        <h1 class="display-4 text-center mb-3"> Hello</h1>
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="mb-3 text-center">
+            <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="Password" type="password">
+
+        </div>
+        <div id="emailHelp" class="form-text text-center my-3">Please do not use NHS Usernames or Passwords</div>
+
+        <div class="text-center">
+     <button class="btn btn-primary" type="submit">Log In</button>
+        </div>
+    </form>
+{% endblock %}
+.schema

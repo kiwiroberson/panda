@@ -2,11 +2,12 @@ cs50
 Flask
 Flask-Session
 requests
-langchain.vectorstores.Pinecone
+langchain.vectorstores
 os
-langchain.embeddings.openai.OpenAIEmbeddings
-pinecone.Pinecone
+langchain.embeddings.openai
+pinecone
 werkzeug.security.check_password_hash
 werkzeug.security.generate_password_hash
 datetime.datetime
 sqlite3
+dotenv

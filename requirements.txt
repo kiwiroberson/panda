@@ -2,9 +2,9 @@ cs50
 Flask
 Flask-Session
 requests
-langchain.vectorstores
+langchain-chroma
 os
-langchain.embeddings.openai
+langchain-openai
 pinecone
 werkzeug.security.check_password_hash
 werkzeug.security.generate_password_hash

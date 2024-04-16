@@ -3,7 +3,7 @@ Flask
 Flask-Session
 requests
 langchain-chroma
-os
+os-sys
 langchain-openai
 pinecone
 werkzeug.security.check_password_hash

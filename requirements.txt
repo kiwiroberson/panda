@@ -3,7 +3,6 @@ Flask
 Flask-Session
 requests
 langchain-chroma
-os-sys
 langchain-openai
 pinecone-client
 Werkzeug

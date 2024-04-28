@@ -9,3 +9,4 @@ Werkzeug
 DateTime
 db-sqlite3
 python-dotenv
+gunicorn>=20.1.0

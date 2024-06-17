@@ -17,6 +17,22 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
+#set environmental variables
+import os
+
+# Fetching API keys from environment variables
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
+
+# Checking if the keys are successfully fetched
+if not OPENAI_API_KEY:
+    raise ValueError("OpenAI API Key not found in environment variables.")
+if not PINECONE_API_KEY:
+    raise ValueError("Pinecone API Key not found in environment variables.")
+
+print("OpenAI API Key:", OPENAI_API_KEY)
+print("Pinecone API Key:", PINECONE_API_KEY)
+
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///discharge.db")
 index = db.execute("SELECT * FROM Neonataldc")
@@ -93,13 +109,6 @@ def clever_magpie():
         from dotenv import load_dotenv
         from langchain_pinecone import PineconeVectorStore
         from langchain_openai import OpenAIEmbeddings
-
-        load_dotenv()
-        OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
-        PINECONE_API_KEY = os.environ["PINECONE_API_KEY"]
-
-        print(f"OpenAI:{OPENAI_API_KEY}")
-        print(f"Pinecone:{PINECONE_API_KEY}")
 
         index_name = 'starter-index'
         embeddings = OpenAIEmbeddings()

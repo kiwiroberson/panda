@@ -85,48 +85,31 @@ def index():
 @login_required
 def clever_magpie():
     if request.method == "POST":
-        from langchain.vectorstores import Pinecone as Pineconevector
-        import os
-        from langchain.embeddings.openai import OpenAIEmbeddings
-        from pinecone import Pinecone
-
-        #from credentials import openai_api_key, pinecone_api
-        load_dotenv()
-        openai_api_key = os.environ.get("OPENAI_API_KEY")
-        pinecone_api_key = os.environ.get("PINECONE_API_KEY")
-
         print("post magpie")
         query = request.form.get('question')
 
-        #initiate pinecone
+        import os
+        from dotenv import load_dotenv
+        from langchain_pinecone import PineconeVectorStore
+        from langchain_openai import OpenAIEmbeddings
 
-        pc = Pinecone(api_key=pinecone_api_key)
-        index = pc.Index("starter-index")
+        load_dotenv()
+        os.environ.get("OPENAI_API_KEY")
+        os.environ.get("PINECONE_API_KEY")
 
-        #initiate langchain
+        index_name = 'starter-index'
+        embeddings = OpenAIEmbeddings()
 
-        os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY") or openai_api_key
-        embed_model = OpenAIEmbeddings(model="text-embedding-ada-002")
+        vectorstore = PineconeVectorStore(index_name=index_name, embedding=embeddings)
 
-        # Note: database columns include ['file_index', 'filename', 'speciality', 'page_num', 'text'])
-
-
-        text_field = "text"  # the metadata field that contains our text
-
-        # initialize the vector store object
-        vectorstore = Pineconevector(index, embed_model.embed_query, text_field)
-
-        # interogate database with query
-        answer = vectorstore.similarity_search(query, k=1)
-        guideline = answer[0].metadata['title']
-        page = int(answer[0].metadata['page_num'])
-        href = answer[0].metadata['url'] +'#page='+ str(int(answer[0].metadata['page_num']))
-
-        print(guideline)
-        print(page)
-
-        return render_template("clever_magpie_answer.html", href=href, guideline=guideline, page=page)
-
+        if query is None:
+            render_template("clever_magpie.html", )
+        else:
+            result = vectorstore.similarity_search(query, k=1)
+            title = result[0].metadata['title']
+            url = result[0].metadata['url']
+            page_num = result[0].metadata['page_num']
+            return render_template("clever_magpie_answer.html", href=url, guideline=title, page=page_num)
 
     else:
         print("get magpie")

@@ -125,8 +125,8 @@ def clever_magpie():
         # interogate database with query
         answer = vectorstore.similarity_search(query, k=1)
         guideline = answer[0].metadata['title']
-        page = int(answer[0].metadata['page'])
-        href = answer[0].metadata['url'] +'#page='+ str(int(answer[0].metadata['page']))
+        page = int(answer[0].metadata['page_num'])
+        href = answer[0].metadata['url'] +'#page='+ str(int(answer[0].metadata['page_num']))
 
         print(guideline)
         print(page)

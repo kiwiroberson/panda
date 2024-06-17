@@ -92,26 +92,20 @@ def clever_magpie():
 
         #from credentials import openai_api_key, pinecone_api
         load_dotenv()
-        openai_api_key = os.environ.get("OPENAI_API_KEY")
-        pinecone_api_key = os.environ.get("PINECONE_API_KEY")
-        print("openai")
-        print(openai_api_key)
-        print("pinecone")
-        print(pinecone_api_key)
-
-
+        os.environ.get("OPENAI_API_KEY")
+        os.environ.get("PINECONE_API_KEY")
 
         print("post magpie")
         query = request.form.get('question')
 
         #initiate pinecone
 
-        pc = Pinecone(api_key=pinecone_api_key)
+        pc = Pinecone(api_key=PINECONE_API_KEY)
         index = pc.Index("starter-index")
 
         #initiate langchain
 
-        os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY") or openai_api_key
+        #os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY") or openai_api_key
         embed_model = OpenAIEmbeddings(model="text-embedding-ada-002")
 
         # Note: database columns include ['file_index', 'filename', 'speciality', 'page_num', 'text'])

@@ -4,6 +4,7 @@ Flask-Session
 requests
 langchain-chroma
 langchain-openai
+langchain-pinecone
 pinecone-client
 Werkzeug
 DateTime

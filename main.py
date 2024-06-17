@@ -98,7 +98,7 @@ def clever_magpie():
         print(openai_api_key)
         print("pinecone")
         print(pinecone_api_key)
-        
+
 
 
         print("post magpie")
@@ -110,7 +110,7 @@ def clever_magpie():
         index = pc.Index("starter-index")
 
         #initiate langchain
-       
+
         os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY") or openai_api_key
         embed_model = OpenAIEmbeddings(model="text-embedding-ada-002")
 
@@ -257,3 +257,7 @@ def register():
     # User reached route via GET (as by clicking a link or via redirect)
     else:
         return
+
+
+if __name__ == '__main__':
+    app.run(debug=True, port=os.getenv("PORT", default=5000))

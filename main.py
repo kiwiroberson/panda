@@ -98,6 +98,9 @@ def clever_magpie():
         OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
         PINECONE_API_KEY = os.environ["PINECONE_API_KEY"]
 
+        print(f"OpenAI:{OPENAI_API_KEY}")
+        print(f"Pinecone:{PINECONE_API_KEY}")
+
         index_name = 'starter-index'
         embeddings = OpenAIEmbeddings()
 

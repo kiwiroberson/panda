@@ -87,6 +87,7 @@ def clever_magpie():
     if request.method == "POST":
         print("post magpie")
         query = request.form.get('question')
+        print(f"{query}")
 
         import os
         from dotenv import load_dotenv
@@ -105,6 +106,7 @@ def clever_magpie():
         if query is None:
             render_template("clever_magpie.html", )
         else:
+            
             result = vectorstore.similarity_search(query, k=1)
             title = result[0].metadata['title']
             url = result[0].metadata['url']

@@ -122,7 +122,8 @@ def clever_magpie():
             result = vectorstore.similarity_search(query, k=1)
             title = result[0].metadata['title']
             url = result[0].metadata['url']
-            page_num = result[0].metadata['page_num']
+            page_num = round(result[0].metadata['page_num'])
+            url_page = url + "#page=" + page_num
             return render_template("clever_magpie_answer.html", href=url, guideline=title, page=page_num)
 
     else:

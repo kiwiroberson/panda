@@ -21,6 +21,7 @@ Session(app)
 import os
 
 # Fetching API keys from environment variables
+load_dotenv()
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
 
@@ -123,8 +124,8 @@ def clever_magpie():
             title = result[0].metadata['title']
             url = result[0].metadata['url']
             page_num = round(result[0].metadata['page_num'])
-            url_page = url + "#page=" + page_num
-            return render_template("clever_magpie_answer.html", href=url, guideline=title, page=page_num)
+            url_page = url + "#page=" + str(page_num)
+            return render_template("clever_magpie_answer.html", href=url_page, guideline=title, page=page_num)
 
     else:
         print("get magpie")
